@@ -93,3 +93,45 @@ def isRailroadTie3(arr):
     return 1
 
 print(isRailroadTie3([]))
+
+def largestAdjacentSum(arr):
+    n = len(arr)
+    if n < 2:
+        return 0
+    max_sum = arr[0] + arr[1]
+    for i in range(n - 1):
+        if arr[i] + arr[i + 1] > max_sum:
+            max_sum = arr[i] + arr[i + 1]
+    return max_sum
+print(largestAdjacentSum([1,1,1,1,1,2,1,1,1]))
+
+def checkConcatenatedSum(n, catlen):
+    origin = n
+    digit_sum = 0
+    while n > 0:
+        digit = n % 10
+        rev_sum = 0
+        i = 1
+        while i <= catlen:
+            rev_sum = rev_sum * 10 + digit
+            i += 1
+        digit_sum += rev_sum
+        n //= 10
+    return 1 if origin == digit_sum else 0
+
+print(checkConcatenatedSum(198, 2))
+
+def isLegalNumber(arr, base):
+    for i in arr:
+        if i < 0 or i >= base:
+            return 0
+    return 1
+
+def convertToBase(arr, base):
+    if isLegalNumber(arr, base) == 0:
+        return -1
+    result = 0
+    for i in arr:
+        result = result * base + i
+    return result
+print(convertToBase([1, 0, 1, 1], 2))
