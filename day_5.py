@@ -80,3 +80,65 @@ def matches_pattern1(arr, pattern):
     return 1 if n == i else 0
 
 print(matches_pattern1([1, 1, 1, 2, 2, 1, 1, 3], [1, 2, 1]))
+
+def isPrime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def findPorcupineNumber(n):
+    num = n + 1
+    while True:
+        if isPrime(num) and num % 10 == 9:
+            next_num = num + 1
+            while True:
+                if isPrime(next_num):
+                    if next_num % 10 == 9:
+                        return num
+                    else:
+                        break
+                next_num += 1
+        num += 1
+
+print(findPorcupineNumber(138))
+
+def getExponent(n, p):
+    if p <= 1:
+        return -1
+    i = 0
+    while n % p ==  0:
+        i += 1
+        n //= p
+    return i
+
+print(getExponent(-250, 5))
+
+def isPerfectNumber(num):
+    sum_factors = 0
+    i = 1
+    while i < num:
+        if num % i == 0:
+            sum_factors += i
+        i += 1
+    return sum_factors == num
+
+def henry(n , m):
+    count = 0
+    num = 1
+    nth = 0
+    mth = 0
+    while True:
+        if isPerfectNumber(num):
+            count += 1
+            if count == n:
+                nth = num
+            if count == m:
+                mth = num
+            if nth and mth:
+                return nth + mth
+        num += 1
+
+print(henry(1, 3))
