@@ -75,3 +75,22 @@ def isOneBalanced(arr):
         return 0
     return 1 if start_ones + end_ones == non_ones else 0
 print(isOneBalanced([1, 1, 1, 2, 3, -18, 45, 1]))
+
+def minDistance(n):
+    if n <= 1:
+        return 0
+
+    prev_factor = 0
+    min_dist = n
+
+    for i in range(1, n + 1):
+        if n % i == 0:
+            if prev_factor != 0:
+                dist = i - prev_factor
+                if dist < min_dist:
+                    min_dist = dist
+            prev_factor = i
+
+    return min_dist
+
+print(minDistance(15))
